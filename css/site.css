@@ -1,0 +1,28 @@
+body {
+    background-color: white;
+}
+
+.container {
+    max-width: 70rem;
+    width: 100%;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 15px;
+    color: #050708;
+    /* background-color: gray; */
+}
+
+.bg-green {
+    background-color: #2d8c35;
+}
+
+.bg-silver {
+    background-color: #acadb0;
+}
+
+.bg-gray {
+    background-color: #696a6c;
+}
+
+.bg-black {
+    background-color: #000000;
+}
