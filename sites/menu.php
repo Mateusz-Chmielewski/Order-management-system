@@ -64,7 +64,7 @@
             
             <div class="row text-center">
                 <div class="col-1 allign-center data__cell">
-                    1
+                    <?php echo $i; ?>
                 </div>
                 <div class="col-1 date data__cell">
                     2021-07-14
@@ -84,8 +84,30 @@
                 <div class="col-2 data__cell">
                     Telefon
                 </div>
-                <div class="col-1 bg-green data__button">
+                <div class="col-1 bg-green data__button" onclick="showMore('more<?php echo $i; ?>')">
                     Więcej
+                </div>
+            </div>
+            <div id="more<?php echo $i; ?>" class="data__more">
+                <div class="row text-center">
+                    <div class="col data__cell">
+                        bartlomiej.zoltek1@protonmail.com
+                    </div>
+                    <div class="col data__cell">
+                        Pęknięta szybka
+                    </div>
+                    <div class="col data__cell">
+                        Zostawił ładowarkę
+                    </div>
+                    <div class="col-1 bg-green data__button">
+                        Status
+                    </div>
+                    <div class="col-1 bg-green data__button">
+                        Edytuj
+                    </div>
+                    <div class="col-1 bg-green data__button">
+                        Drukuj
+                    </div>
                 </div>
             </div>
 
@@ -97,6 +119,8 @@
     
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/show_more.js"></script>
+
     
 </body>
 </html>
