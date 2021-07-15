@@ -12,6 +12,12 @@
 <body>
     <div class="container">
 
+        <!-- <?php
+            require_once '../connection/connection.php';
+
+            print_r(openConnection());
+        ?> -->
+
         <div class="dashboard">
             <div class="row text-center">
                 <div class="col dashboard__button bg-green ">
