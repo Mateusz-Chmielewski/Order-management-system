@@ -85,7 +85,7 @@
                     Telefon
                 </div>
                 <div class="col-1 bg-green data__button" onclick="showMore('more<?php echo $i; ?>')">
-                    Więcej
+                    <div id="dmore<?php echo $i; ?>">Więcej</div>
                 </div>
             </div>
             <div id="more<?php echo $i; ?>" class="data__more">
@@ -120,6 +120,7 @@
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/show_more.js"></script>
+
 
     
 </body>
