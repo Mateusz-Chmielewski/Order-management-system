@@ -1,0 +1,6 @@
+<?php
+    $db_host = "ServerName";
+    $db_name = "DatabaseName";
+    $db_user = "UserName";
+    $db_password = "Password";
+?>
