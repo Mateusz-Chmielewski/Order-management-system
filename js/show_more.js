@@ -1,6 +1,7 @@
 
 function showMore(elementId) {
-    var buttonElementId = 'd' + elementId;
+    let buttonElementId = 'd' + elementId;
+    console.log(document.getElementById(elementId).style.display);
 
     if (document.getElementById(elementId).style.display == '')
         setNone(elementId, buttonElementId);

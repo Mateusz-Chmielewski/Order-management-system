@@ -30,6 +30,10 @@
     padding: 0.75rem;
 }
 
+.mail {
+    min-width: 10%;
+}
+
 .data__button {
     color: white;
     font-weight: 700;

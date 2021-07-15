@@ -90,22 +90,27 @@
             </div>
             <div id="more<?php echo $i; ?>" class="data__more">
                 <div class="row text-center">
-                    <div class="col data__cell">
-                        bartlomiej.zoltek1@protonmail.com
+                    <div class="mail col-auto data__cell ">
+                        bartlomiej.zoltek1.brzeczyszczykiewicz@protonmail.com
                     </div>
                     <div class="col data__cell">
                         Pęknięta szybka
                     </div>
+                    <div class="col-1 bg-silver data__button">
+                        Status
+                    </div>
+                    <div class="col-1 bg-gray data__button">
+                        Edytuj
+                    </div>
+                </div>
+                <div class="row text-center">
                     <div class="col data__cell">
                         Zostawił ładowarkę
                     </div>
-                    <div class="col-1 bg-green data__button">
-                        Status
+                    <div class="col data__cell">
+                        Zostawił ładowarkę
                     </div>
-                    <div class="col-1 bg-green data__button">
-                        Edytuj
-                    </div>
-                    <div class="col-1 bg-green data__button">
+                    <div class="col-1 bg-black data__button">
                         Drukuj
                     </div>
                 </div>
