@@ -12,11 +12,11 @@
 <body>
     <div class="container">
 
-        <!-- <?php
-            require_once '../connection/connection.php';
+        <?php
+            // require_once '../connection/connection.php';
 
-            print_r(openConnection());
-        ?> -->
+            // print_r(openConnection());
+        ?>
 
         <div class="dashboard">
             <div class="row text-center">
@@ -30,7 +30,7 @@
                     Sortus według
                 </div>
                 <div class="col dashboard__button bg-black">
-                    Wyświetl Klientów
+                    <a href="customers/show_customers.php">Wyświetl Klientów</a>
                 </div>
             </div>
         </div>
@@ -96,6 +96,7 @@
             </div>
             <div id="more<?php echo $i; ?>" class="data__more">
                 <div class="row text-center">
+                    <div class="col-1 data__cell invisible"></div>
                     <div class="mail col-auto data__cell ">
                         bartlomiej.zoltek1.brzeczyszczykiewicz@protonmail.com
                     </div>
@@ -110,6 +111,7 @@
                     </div>
                 </div>
                 <div class="row text-center">
+                    <div class="col-1 data__cell invisible"></div>
                     <div class="col data__cell">
                         Zostawił ładowarkę
                     </div>

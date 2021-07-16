@@ -6,6 +6,11 @@
     line-height: 8.5rem;
     /* padding: 2rem; */
     margin: 1.5rem;
+    user-select: none;
+}
+
+.dashboard__button a {
+    color: white;
 }
 
 .label-header {
@@ -39,6 +44,7 @@
     font-weight: 700;
     margin: 0.2rem;
     padding: 0.75rem;
+    user-select: none;
 }
 
 .data__button:hover {
