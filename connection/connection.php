@@ -7,7 +7,6 @@
 
         if (!$connection)
             die(print_r(sqlsrv_errors()));
-        else echo "OK";
         
         return $connection;
     }

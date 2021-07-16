@@ -13,19 +13,13 @@
 <body>
     <div class="container">
 
-        <?php
-            // require_once '../connection/connection.php';
-
-            // print_r(openConnection());
-        ?>
-
         <div class="dashboard">
             <div class="row text-center">
                 <div class="col dashboard__button bg-green ">
                     Nowe zlecenie
                 </div>
                 <div class="col dashboard__button bg-silver">
-                    Status
+                    Nowy Klient
                 </div>
                 <div class="col dashboard__button bg-gray">
                     Sortus według
@@ -56,22 +50,34 @@
             </div>
         </div>
         <div class="data">
+
             <?php
-                for ($i = 0; $i < 20; $i++) :
+                require_once '../../connection/connection.php';
+
+                try {
+                    
+                    $connection = openConnection();
+                    $tsql = "SELECT * FROM klienci";
+                    $getCustomers = sqlsrv_query($connection, $tsql);
+
+                    if (!$getCustomers)
+                        throw new Exception;
+                    
+                    while ($row = sqlsrv_fetch_array($getCustomers, SQLSRV_FETCH_ASSOC)) :
             ?>
             
             <div class="row text-center">
                 <div class="col-2 data__cell">
-                    Bartłomiej
+                    <?php echo $row['Imie']; ?>
                 </div>
                 <div class="col-2 data__cell">
-                    Żółtek
+                    <?php echo $row['Nazwisko']; ?>
                 </div>
                 <div class="col-1 date data__cell">
-                    666222444
+                    <?php echo $row['Telefon']; ?>
                 </div>
                 <div class="col data__cell">
-                    bartlomiej.zoltek1@protonmail.com
+                    <?php echo $row['Mail']; ?>
                 </div>
                 <div class="col-1 bg-silver data__button" id="getWidth">
                     Edytuj
@@ -86,7 +92,14 @@
             
 
             <?php
-                endfor;
+                endwhile;
+
+                sqlsrv_free_stmt($getCustomers);
+                sqlsrv_close($connection);
+
+                } catch (Exception $e) {
+                    echo "Błąd połączenia z serverem <br>";
+                }
             ?>
         </div>
     </div>
