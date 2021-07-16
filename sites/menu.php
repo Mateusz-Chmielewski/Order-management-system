@@ -29,8 +29,8 @@
                 <div class="col dashboard__button bg-gray">
                     Sortus według
                 </div>
-                <div class="col dashboard__button bg-black">
-                    <a href="customers/show_customers.php">Wyświetl Klientów</a>
+                <div class="col dashboard__button bg-black" onclick="window.location.href='customers/show_customers.php'">
+                    Wyświetl Klientów
                 </div>
             </div>
         </div>

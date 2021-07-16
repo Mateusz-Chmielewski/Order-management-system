@@ -12,19 +12,19 @@ body {
 }
 
 .bg-green {
-    background-color: #2d8c35;
+    background-color: #2d8c35!important;
 }
 
 .bg-silver {
-    background-color: #acadb0;
+    background-color: #acadb0!important;
 }
 
 .bg-gray {
-    background-color: #696a6c;
+    background-color: #696a6c!important;
 }
 
 .bg-black {
-    background-color: #000000;
+    background-color: #000000!important;
 }
 
 a {

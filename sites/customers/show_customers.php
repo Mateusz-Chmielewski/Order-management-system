@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>System zarządzania zleceniami</title>
+    <title>Klienci</title>
     <link href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/site.css">
     <link rel="stylesheet" href="../../css/show_all.css">
@@ -18,14 +18,14 @@
                 <div class="col dashboard__button bg-green ">
                     Nowe zlecenie
                 </div>
-                <div class="col dashboard__button bg-silver">
+                <div class="col dashboard__button bg-silver" onclick="window.location.href='add_customer.php'">
                     Nowy Klient
-                </div>
+                </div>  
                 <div class="col dashboard__button bg-gray">
                     Sortus według
                 </div>
-                <div class="col dashboard__button bg-black">
-                    <a href="../menu.php">Wyświetl Zlecenia</a>
+                <div class="col dashboard__button bg-black" onclick="window.location.href='../menu.php'">
+                    Wyświetl Zlecenia
                 </div>
             </div>
         </div>

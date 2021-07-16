@@ -9,6 +9,11 @@
     user-select: none;
 }
 
+.dashboard__button:hover {
+    cursor: pointer;
+    background-color: #60b165!important;
+}
+
 .dashboard__button a {
     color: white;
 }
@@ -45,10 +50,11 @@
     margin: 0.2rem;
     padding: 0.75rem;
     user-select: none;
+    border: none;
 }
 
 .data__button:hover {
-    background-color: #60b165;
+    background-color: #60b165!important;
     cursor: pointer;
 }
 
