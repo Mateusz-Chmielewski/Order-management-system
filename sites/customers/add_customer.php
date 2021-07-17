@@ -1,3 +1,9 @@
+<?php
+    session_start();
+
+    require_once 'if_exist_display.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -17,13 +23,19 @@
         <div class="form__header">
             Nowy <span class="color-green">Klient</span> 
         </div>
-        <form action="">
+
+        <form action="insert_customer.php" method="post">
             <div class="row form-group">
                 <div class="col-3 form__cell__header form__cell bg-green">
                     <label for="customerFirstName" class="form__input">Imie</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="customerFirstName" name="customerFirstName" placeholder="Imie">
+                    <input type="text" class="form-control" id="customerFirstName" maxlength="20" name="customerFirstName" placeholder="Imie" value="<?php ifExistDisplay('remember_customerFirstName'); ?>">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_customerFirstName');
+                        ?>
+                    </small>
                 </div>
             </div>
             <div class="row form-group">
@@ -31,7 +43,12 @@
                     <label for="customerLastName" class="form__input">Nazwisko</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="customerLastName" name="customerLastName" placeholder="Nazwisko">
+                    <input type="text" class="form-control" id="customerLastName" maxlength="30" name="customerLastName" placeholder="Nazwisko" value="<?php ifExistDisplay('remember_customerLastName'); ?>">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_customerLastName');
+                        ?>
+                    </small>
                 </div>
             </div>
             <div class="row form-group">
@@ -39,7 +56,7 @@
                     <label for="customerPhone" class="form__input">Telefon</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="customerPhone" name="customerPhone" placeholder="Imie">
+                    <input type="text" class="form-control" id="customerPhone" maxlength="15" name="customerPhone" placeholder="111222333" value="<?php ifExistDisplay('remember_customerPhone'); ?>">
                 </div>
             </div>
             <div class="row form-group">
@@ -47,7 +64,7 @@
                     <label for="customerMail" class="form__input">Email</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="customerMail" name="customerMail" placeholder="Imie">
+                    <input type="text" class="form-control" id="customerMail" name="customerMail" placeholder="nazwa@domena.pl" value="<?php ifExistDisplay('remember_customerMail'); ?>">
                 </div>
             </div>
             <div class="row form-group">

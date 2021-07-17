@@ -2,6 +2,10 @@ body {
     background-color: white;
 }
 
+.error {
+    color: red!important;
+}
+
 .container {
     max-width: 70rem;
     width: 100%;
