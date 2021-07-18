@@ -15,7 +15,7 @@
 
         <div class="dashboard">
             <div class="row text-center">
-                <div class="col dashboard__button bg-green ">
+                <div class="col dashboard__button bg-green " onclick="window.location.href='../add_order.php'">
                     Nowe zlecenie
                 </div>
                 <div class="col dashboard__button bg-silver" onclick="window.location.href='add_customer.php'">
