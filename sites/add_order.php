@@ -60,11 +60,6 @@
                         <option>Niepowodzenie</option>
                         <option>Odmowa</option>
                     </select>
-                    <small class="error">
-                        <?php
-                            ifExistDisplay('error_orderState');
-                        ?>
-                    </small>
                 </div>
             </div>
 
@@ -133,7 +128,7 @@
                     <label for="orderDescription" class="form__input">Opis</label>
                 </div>
                 <div class="col form__cell">
-                    <textarea type="text" class="form-control" id="orderDescription" name="orderDescription" placeholder="Opisz tutaj dokładnie problem z urządzeniem" value="<?php ifExistDisplay('remember_orderDescription'); ?>"></textarea>
+                    <textarea type="text" class="form-control" id="orderDescription" name="orderDescription" placeholder="Opisz tutaj dokładnie problem z urządzeniem"><?php ifExistDisplay('remember_orderDescription'); ?></textarea>
                     <small class="error">
                         <?php
                             ifExistDisplay('error_orderDescription');
@@ -147,7 +142,7 @@
                     <label for="orderComment" class="form__input">Uwagi</label>
                 </div>
                 <div class="col form__cell">
-                    <textarea type="text" class="form-control" id="orderComment" name="orderComment" placeholder="Możesz tutaj dodać Uwagi dotyczące zlecenia" value="<?php ifExistDisplay('remember_orderComment'); ?>"></textarea>
+                    <textarea type="text" class="form-control" id="orderComment" name="orderComment" placeholder="Możesz tutaj dodać Uwagi dotyczące zlecenia" ><?php ifExistDisplay('remember_orderComment'); ?></textarea>
                 </div>
             </div>
 
@@ -156,7 +151,7 @@
                     <label for="orderNote" class="form__input">Notatka</label>
                 </div>
                 <div class="col form__cell">
-                    <textarea type="text" class="form-control" id="orderNote" name="orderNote" placeholder="Możesz tutaj dodać Notatkę do zlecenia. Nie zostanie ona wydrukowana" value="<?php ifExistDisplay('remember_orderNote'); ?>"></textarea>
+                    <textarea type="text" class="form-control" id="orderNote" name="orderNote" placeholder="Możesz tutaj dodać Notatkę do zlecenia. Nie zostanie ona wydrukowana"><?php ifExistDisplay('remember_orderNote'); ?></textarea>
                 </div>
             </div>
 
