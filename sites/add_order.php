@@ -27,11 +27,17 @@
         <form action="insert_order.php" method="post">
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-green">
-                    <label for="orderDate" class="form__input">Data</label>
+                <div class="col-3 form__cell__header form__cell bg-gray">
+                    <label for="orderDateYear" class="form__input">Data</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderDate" maxlength="20" name="orderDate" placeholder="YYYY-MM-DD" value="<?php ifExistDisplay('remember_orderDate'); ?>">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="orderDateYear" maxlength="4" name="orderDateYear" placeholder="YYYY" value="<?php ifExistDisplay('remember_orderDateYear'); ?>">
+                        <div class="input-group-text"> - </div>
+                        <input type="text" class="form-control" id="orderDateMonth" maxlength="2" name="orderDateMonth" placeholder="MM" value="<?php ifExistDisplay('remember_orderDateMonth'); ?>">
+                        <div class="input-group-text"> - </div>
+                        <input type="text" class="form-control" id="orderDateDay" maxlength="2" name="orderDateDay" placeholder="DD" value="<?php ifExistDisplay('remember_orderDateDay'); ?>">
+                    </div>
                     <small class="error">
                         <?php
                             ifExistDisplay('error_orderDate');
@@ -41,7 +47,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-silver">
+                <div class="col-3 form__cell__header form__cell bg-black">
                     <label for="orderState" class="form__input">Status</label>
                 </div>
                 <div class="col form__cell">
@@ -63,7 +69,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-gray">
+                <div class="col-3 form__cell__header form__cell bg-green">
                     <label for="orderFirstName" class="form__input">Imie</label>
                 </div>
                 <div class="col form__cell">
@@ -77,7 +83,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-black">
+                <div class="col-3 form__cell__header form__cell bg-silver">
                     <label for="orderLastName" class="form__input">Nazwisko</label>
                 </div>
                 <div class="col form__cell">
@@ -91,7 +97,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-green">
+                <div class="col-3 form__cell__header form__cell bg-gray">
                     <label for="orderPhone" class="form__input">Telefon</label>
                 </div>
                 <div class="col form__cell">
@@ -100,7 +106,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-silver">
+                <div class="col-3 form__cell__header form__cell bg-black">
                     <label for="orderMail" class="form__input">Email</label>
                 </div>
                 <div class="col form__cell">
@@ -109,7 +115,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-gray">
+                <div class="col-3 form__cell__header form__cell bg-green">
                     <label for="orderDevice" class="form__input">Sprzęt</label>
                 </div>
                 <div class="col form__cell">
@@ -123,7 +129,7 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-black">
+                <div class="col-3 form__cell__header form__cell bg-silver">
                     <label for="orderDescription" class="form__input">Opis</label>
                 </div>
                 <div class="col form__cell">
@@ -137,16 +143,16 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-green">
+                <div class="col-3 form__cell__header form__cell bg-gray">
                     <label for="orderComment" class="form__input">Uwagi</label>
                 </div>
                 <div class="col form__cell">
-                    <textarea type="text" class="form-control" id="orderComment" name="orderComment" placeholder="Możesz tutaj dodać uwagi dotyczące zlecenia" value="<?php ifExistDisplay('remember_orderComment'); ?>"></textarea>
+                    <textarea type="text" class="form-control" id="orderComment" name="orderComment" placeholder="Możesz tutaj dodać Uwagi dotyczące zlecenia" value="<?php ifExistDisplay('remember_orderComment'); ?>"></textarea>
                 </div>
             </div>
 
             <div class="row form-group">
-                <div class="col-3 form__cell__header form__cell bg-silver">
+                <div class="col-3 form__cell__header form__cell bg-black">
                     <label for="orderNote" class="form__input">Notatka</label>
                 </div>
                 <div class="col form__cell">
