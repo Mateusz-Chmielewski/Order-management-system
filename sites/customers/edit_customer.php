@@ -24,7 +24,7 @@
 
         try {
             $connection = openConnection();
-            $tsql = "SELECT * FROM klienci WHERE ID_klienta='$customerID'";
+            $tsql = "SELECT RTRIM(Imie) as Imie, RTRIM(Nazwisko) as Nazwisko, RTRIM(Telefon) as Telefon, RTRIM(Mail) as Mail FROM klienci WHERE ID_klienta='$customerID'";
             $getCustomer = sqlsrv_query($connection, $tsql);
 
             if (!$getCustomer)
@@ -87,7 +87,7 @@
             <div class="row form-group">
                 <div class="col invisible"></div>
                 <div class="col error"><?php ifExistDisplay('error_customer') ?></div>
-                <input type="submit" value="Dodaj" class="col-2 bg-green data__button btn m-2">
+                <input type="submit" value="Edytuj" class="col-2 bg-green data__button btn m-2">
                 <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='show_customers.php'">
             </div>
         </form>
