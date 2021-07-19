@@ -33,8 +33,7 @@
         $checkCustomers = sqlsrv_query($connection, $tsql);
 
         if (!$checkCustomers)
-            // throw new Exception;
-            die(print_r(sqlsrv_errors()));
+            throw new Exception;
                         
         while ($row = sqlsrv_fetch_array($checkCustomers, SQLSRV_FETCH_ASSOC))
             if ($row['ID_klienta'] != '') {
@@ -44,10 +43,18 @@
                 exit();
             }
                 
+        sqlsrv_free_stmt($checkCustomers);
 
+        $tsql = "INSERT INTO klienci (Imie, Nazwisko, Telefon, Mail) VALUES ('$customerFirstName', '$customerLastName', '$customerPhone', '$customerMail')";
+        $insertCustomer = sqlsrv_query($connection, $tsql);
+
+        if (!$insertCustomer)
+            throw new Exception;
+
+            sqlsrv_free_stmt($insertCustomer);
 
     } catch (Exception $e) {
-        echo "Błąd";
+        $_SESSION['confirmation'] = '<span class="error">Błąd dodania klienta</span>';
     }
         
 
@@ -58,5 +65,7 @@
     unset($_SESSION['remember_customerPhone']);
     unset($_SESSION['remember_customerMail']);
 
-    // header('Location: show_customers.php');
+
+    $_SESSION['confirmation'] = "Dodano klienta";
+    header('Location: show_customers.php');
 ?>

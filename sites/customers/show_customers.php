@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    require_once 'if_exist_display.php';
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -30,6 +34,12 @@
             </div>
         </div>
 
+        <div class="confirmation">
+            <?php
+                ifExistDisplay('confirmation');
+            ?>
+        </div>
+
         <div class="label-header">
             <div class="row text-center">
                 <div class="col-2 label-header__cell bg-green">
@@ -57,7 +67,7 @@
                 try {
                     
                     $connection = openConnection();
-                    $tsql = "SELECT * FROM klienci";
+                    $tsql = "SELECT * FROM klienci ORDER BY Nazwisko";
                     $getCustomers = sqlsrv_query($connection, $tsql);
 
                     if (!$getCustomers)
