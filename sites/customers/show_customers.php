@@ -92,7 +92,7 @@
                 <div class="col-1 bg-silver data__button" id="getWidth">
                     Edytuj
                 </div>
-                <div class="col-1 bg-gray data__button">
+                <div class="col-1 bg-gray data__button" id="bdelete<?php echo $row['ID_klienta']; ?>" onclick="showConfirmDelete('delete<?php echo $row['ID_klienta']; ?>')">
                     Usuń
                 </div>
                 <div class="col-1 bg-black data__button">
@@ -100,6 +100,13 @@
                 </div>
             </div>
             
+            <div id="delete<?php echo $row['ID_klienta']; ?>" class="row text-center data__more">
+                <div class="col data__cell invisible"></div>
+                <div class="col-1 data__button bg-green" onclick="window.location.href='delete_customer.php?ID=<?php echo $row['ID_klienta']; ?>'">
+                    Potwierdź
+                </div>
+                <div class="col-1 data__cell invisible"></div>
+            </div>
 
             <?php
                 endwhile;
@@ -114,10 +121,9 @@
         </div>
     </div>
     
-    
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/set_more-option_width.js"></script>
-
+    <script src="../../js/show_confirm_delete.js"></script>
     
 </body>
 </html> 
