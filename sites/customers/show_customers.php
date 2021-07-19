@@ -89,7 +89,7 @@
                 <div class="col data__cell">
                     <?php echo $row['Mail']; ?>
                 </div>
-                <div class="col-1 bg-silver data__button" id="getWidth">
+                <div class="col-1 bg-silver data__button" id="getWidth" onclick="window.location.href='edit_customer.php?ID=<?php echo $row['ID_klienta']; ?>'">
                     Edytuj
                 </div>
                 <div class="col-1 bg-gray data__button" id="bdelete<?php echo $row['ID_klienta']; ?>" onclick="showConfirmDelete('delete<?php echo $row['ID_klienta']; ?>')">
