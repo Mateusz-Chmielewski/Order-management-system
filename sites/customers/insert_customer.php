@@ -52,14 +52,12 @@
             throw new Exception;
 
             sqlsrv_free_stmt($insertCustomer);
-
+            
+            sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['confirmation'] = '<span class="error">Błąd dodania klienta</span>';
     }
-        
-
-    sqlsrv_close($connection);
-    
+            
     unset($_SESSION['remember_customerFirstName']);
     unset($_SESSION['remember_customerLastName']);
     unset($_SESSION['remember_customerPhone']);
