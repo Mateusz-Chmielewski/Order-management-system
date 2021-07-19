@@ -1,6 +1,9 @@
 <?php
     session_start();
 
+    require_once '../connection/connection.php';
+    require_once 'check_months.php';
+
     $orderDateYear = $_POST['orderDateYear'];
     $orderDateMonth = $_POST['orderDateMonth'];
     $orderDateDay = $_POST['orderDateDay'];
@@ -50,7 +53,58 @@
         exit();
     }
 
-    // require_once '../../connection/connection.php';
+    if (!is_numeric($orderDateYear) || (int) $orderDateYear < 1) {
+        $_SESSION['error_orderDate'] = 'Rok - podano niewłaściwą wartość';
+
+        header('Location: add_order.php');
+        exit();
+    }
+
+    if (!is_numeric($orderDateMonth) || (int) $orderDateMonth < 1 || (int) $orderDateMonth > 12) {
+        $_SESSION['error_orderDate'] = 'Miesiąc - podano niewłaściwą wartość';
+
+        header('Location: add_order.php');
+        exit();
+    }
+
+
+    if (!is_numeric($orderDateDay) || (int) $orderDateDay < 1 || (int) $orderDateDay > 31) {
+        $_SESSION['error_orderDate'] = 'Dzień - podano niewłaściwą wartość';
+
+        header('Location: add_order.php');
+        exit();
+    } else if (isMonth30((int) $orderDateMonth) && (int) $orderDateDay > 30) {
+        $_SESSION['error_orderDate'] = 'Dzień - podano niewłaściwą wartość. Ten miesiąc ma 30 dni';
+
+        header('Location: add_order.php');
+        exit();
+    } else if (isLeapYear((int) $orderDateYear) && (int) $orderDateMonth == 2 && $orderDateDay > 29) {
+        $_SESSION['error_orderDate'] = 'Dzień - podano niewłaściwą wartość. Ten miesiąc ma 29 dni';
+
+        header('Location: add_order.php');
+        exit();
+    } else if ((int) $orderDateMonth == 2 && $orderDateDay > 28) {
+        $_SESSION['error_orderDate'] = 'Dzień - podano niewłaściwą wartość. Ten miesiąc ma 28 dni';
+
+        header('Location: add_order.php');
+        exit();
+    }
+
+    $orderDateYear = (string) $orderDateYear;
+    while (strlen($orderDateYear) < 4)
+        $orderDateYear = '0'.$orderDateYear;
+
+    $orderDateMonth = (string) $orderDateMonth;
+    while (strlen($orderDateMonth) < 2)
+        $orderDateMonth = '0'.$orderDateMonth;
+
+    $orderDateDay = (string) $orderDateDay;
+    while (strlen($orderDateDay) < 2)
+        $orderDateDay = '0'.$orderDateDay;
+
+    $orderDate = $orderDateYear.'-'.$orderDateMonth.'-'.$orderDateDay;
+
+    echo $orderDate;
 
     unset($_SESSION['remember_orderDateYear']);
     unset($_SESSION['remember_orderDateMonth']);

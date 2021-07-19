@@ -114,7 +114,7 @@
                     <label for="orderDevice" class="form__input">Sprzęt</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderDevice" name="orderDevice" placeholder="Laptop" value="<?php ifExistDisplay('remember_orderDevice'); ?>">
+                    <input type="text" class="form-control" id="orderDevice" name="orderDevice" placeholder="Wpisz nazwę urządzenia" value="<?php ifExistDisplay('remember_orderDevice'); ?>">
                     <small class="error">
                         <?php
                             ifExistDisplay('error_orderDevice');
