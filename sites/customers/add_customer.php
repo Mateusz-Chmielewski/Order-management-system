@@ -69,6 +69,7 @@
             </div>
             <div class="row form-group">
                 <div class="col invisible"></div>
+                <div class="col error"><?php ifExistDisplay('error_customer') ?></div>
                 <input type="submit" value="Dodaj" class="col-2 bg-green data__button btn m-2">
                 <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='show_customers.php'">
             </div>
