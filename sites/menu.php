@@ -12,12 +12,6 @@
 <body>
     <div class="container">
 
-        <?php
-            // require_once '../connection/connection.php';
-
-            // print_r(openConnection());
-        ?>
-
         <div class="dashboard">
             <div class="row text-center">
                 <div class="col dashboard__button bg-green " onclick="window.location.href='add_order.php'">
@@ -72,15 +66,16 @@
                     
                     $connection = openConnection();
                     $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta ORDER BY ID_zlecenia DESC";
-                    $getCustomers = sqlsrv_query($connection, $tsql);
+                    $getOrders = sqlsrv_query($connection, $tsql);
 
-                    if (!$getCustomers)
+                    if (!$getOrders)
                         throw new Exception;
                     
-                    while ($row = sqlsrv_fetch_array($getCustomers, SQLSRV_FETCH_ASSOC)) :
+                    while ($row = sqlsrv_fetch_array($getOrders, SQLSRV_FETCH_ASSOC)) :
             ?>
             
             <div class="row text-center">
+
                 <div class="col-1 allign-center data__cell">
                     <?php echo $row['ID_zlecenia']; ?>
                 </div>
@@ -105,8 +100,11 @@
                 <div class="col-1 bg-green data__button" onclick="showMore('more<?php echo $row['ID_zlecenia']; ?>')">
                     <div id="dmore<?php echo $row['ID_zlecenia']; ?>">Więcej</div>
                 </div>
+
             </div>
+            
             <div id="more<?php echo $row['ID_zlecenia']; ?>" class="data__more">
+
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
                     <div class="mail col-3 data__cell ">
@@ -122,6 +120,7 @@
                         Edytuj
                     </div>
                 </div>
+
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
                     <div class="col data__cell">
@@ -131,6 +130,7 @@
                         Usuń
                     </div>
                 </div>
+
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
                     <div class="col data__cell">
@@ -146,11 +146,11 @@
                 
                 endwhile;
 
-                sqlsrv_free_stmt($getCustomers);
+                sqlsrv_free_stmt($getOrders);
                 sqlsrv_close($connection);
 
                 } catch (Exception $e) {
-                    echo "Błąd połączenia z serverem <br>";
+                    echo "Błąd pobrania danych <br>";
                 }
 
             ?>
@@ -161,7 +161,6 @@
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/show_more.js"></script>
-
 
     
 </body>
