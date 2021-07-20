@@ -126,7 +126,7 @@
                     <div class="col-1 bg-green data__button">
                         Status
                     </div>
-                    <div class="col-1 bg-silver data__button">
+                    <div class="col-1 bg-silver data__button" onclick="window.location.href='edit_order.php?ID=<?php echo $row['ID_zlecenia']; ?>'">
                         Edytuj
                     </div>
                 </div>
