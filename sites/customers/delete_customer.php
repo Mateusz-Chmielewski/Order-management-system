@@ -16,6 +16,8 @@
         sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['confirmation'] = '<span class="error">Błąd usuwania klienta</span>';
+        header('Location: show_customers.php');
+        exit();
     }
 
     $_SESSION['confirmation'] = "Usunięto klienta";

@@ -104,7 +104,58 @@
 
     $orderDate = $orderDateYear.'-'.$orderDateMonth.'-'.$orderDateDay;
 
-    echo $orderDate;
+
+    try {
+        $connection = openConnection();
+
+        $tsql = "SELECT ID_klienta FROM klienci WHERE Imie='$orderFirstName' AND Nazwisko='$orderLastName' AND Telefon='$orderPhone' and Mail='$orderMail'";
+        $checkCustomers = sqlsrv_query($connection, $tsql);
+
+        if (!$checkCustomers)
+            throw new Exception;
+                        
+        $row = sqlsrv_fetch_array($checkCustomers, SQLSRV_FETCH_ASSOC);
+
+        if ($row['ID_klienta'] != '') {
+            $orderCustomerID = $row['ID_klienta'];
+        } else {
+                
+            $tsql = "INSERT INTO klienci (Imie, Nazwisko, Telefon, Mail) VALUES ('$orderFirstName', '$orderLastName', '$orderPhone', '$orderMail')";
+            $insertCustomer = sqlsrv_query($connection, $tsql);
+
+            if (!$insertCustomer)
+                throw new Exception;
+            
+            $tsql = "SELECT @@IDENTITY as ID_klienta";
+            $insertCustomer = sqlsrv_query($connection, $tsql);
+            $row = sqlsrv_fetch_array($insertCustomer, SQLSRV_FETCH_ASSOC);
+
+            if (!$insertCustomer)
+                throw new Exception;
+
+            sqlsrv_free_stmt($insertCustomer);
+
+            $orderCustomerID = $row['ID_klienta'];
+        }
+
+        sqlsrv_free_stmt($checkCustomers);
+
+        $tsql = "INSERT INTO zlecenia (Klient, Data, Status, Sprzet, Opis, Uwagi, Notatka) 
+                VALUES ('$orderCustomerID', '$orderDate', '$orderState', '$orderDevice', '$orderDescription', '$orderComment', '$orderNote')";
+
+        $insertOrder = sqlsrv_query($connection, $tsql);
+
+        if (!$insertOrder)
+            throw new Exception;
+
+        sqlsrv_free_stmt($insertOrder);
+
+        sqlsrv_close($connection);
+    } catch (Exception $e) {
+        $_SESSION['confirmation'] = '<span class="error">Błąd dodania zlecenia</span>';
+        header('Location: menu.php');
+    }
+
 
     unset($_SESSION['remember_orderDateYear']);
     unset($_SESSION['remember_orderDateMonth']);
@@ -119,6 +170,6 @@
     unset($_SESSION['remember_orderComment']);
     unset($_SESSION['remember_orderNote']);
 
-
-    // header('Location: menu.php');
+    $_SESSION['confirmation'] = "Dodano zlecenie";
+    header('Location: menu.php');
 ?>

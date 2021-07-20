@@ -56,6 +56,8 @@
             sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['confirmation'] = '<span class="error">Błąd dodania klienta</span>';
+        header('Location: show_customers.php');
+        exit();
     }
             
     unset($_SESSION['remember_customerFirstName']);

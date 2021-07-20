@@ -69,7 +69,13 @@
                                 while ($row = sqlsrv_fetch_array($getState, SQLSRV_FETCH_ASSOC)) :
                         ?>
 
-                        <option <?php if(isset($_SESSION['remember_orderState'])) if($_SESSION['remember_orderState'] == $row['Status']) echo 'selected'; ?> ><?php echo $row['Status']; ?></option>
+                        <option <?php if(isset($_SESSION['remember_orderState'])) 
+                                        if($_SESSION['remember_orderState'] == $row['Status']) { 
+                                            echo 'selected';
+                                            unset($_SESSION['remember_orderState']); 
+                                            } ?> >
+                                            
+                                            <?php echo $row['Status']; ?></option>
 
                         <?php
                                 endwhile;

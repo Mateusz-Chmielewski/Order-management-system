@@ -7,10 +7,6 @@
     $customerPhone = $_POST['customerPhone'];
     $customerMail = $_POST['customerMail']; 
 
-    $_SESSION['remember_customerFirstName'] = $customerFirstName;
-    $_SESSION['remember_customerLastName'] = $customerLastName;
-    $_SESSION['remember_customerPhone'] = $customerPhone;
-    $_SESSION['remember_customerMail'] = $customerMail;
 
     if (empty($customerFirstName) || empty($customerLastName)) {
         $emptyField = 'Pole nie może być puste';
@@ -40,12 +36,10 @@
             sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['confirmation'] = '<span class="error">Błąd edytowania klienta</span>';
+        header('Location: show_customers.php');
+        exit();
     }
 
-    unset($_SESSION['remember_customerFirstName']);
-    unset($_SESSION['remember_customerLastName']);
-    unset($_SESSION['remember_customerPhone']);
-    unset($_SESSION['remember_customerMail']);
 
     $_SESSION['confirmation'] = "Edytowano klienta";
     header('Location: show_customers.php');
