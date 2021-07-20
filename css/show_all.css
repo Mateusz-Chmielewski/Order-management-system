@@ -38,6 +38,7 @@
     background-color: #e8e8e9;
     margin: 0.2rem;
     padding: 0.75rem;
+    overflow-wrap: anywhere;
 }
 
 .mail {
@@ -68,6 +69,6 @@
 }
 
 .status {
-    width: 7.5rem;
+    width: 8rem;
 }
 

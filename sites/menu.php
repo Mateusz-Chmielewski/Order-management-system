@@ -64,59 +64,77 @@
             </div>
         </div>
         <div class="data">
+
             <?php
-                for ($i = 0; $i < 20; $i++) :
+                require_once '../connection/connection.php';
+
+                try {
+                    
+                    $connection = openConnection();
+                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta ORDER BY ID_zlecenia DESC";
+                    $getCustomers = sqlsrv_query($connection, $tsql);
+
+                    if (!$getCustomers)
+                        throw new Exception;
+                    
+                    while ($row = sqlsrv_fetch_array($getCustomers, SQLSRV_FETCH_ASSOC)) :
             ?>
             
             <div class="row text-center">
                 <div class="col-1 allign-center data__cell">
-                    <?php echo $i; ?>
+                    <?php echo $row['ID_zlecenia']; ?>
                 </div>
                 <div class="col-1 date data__cell">
-                    2021-07-14
+                    <?php echo $row['Data']; ?>
                 </div>
                 <div class="col-1 status data__cell">
-                    Zakończone
+                    <?php echo $row['Status']; ?>
                 </div>
                 <div class="col data__cell">
-                    Bartłomiej
+                    <?php echo $row['Imie']; ?>
                 </div>
                 <div class="col-2 data__cell">
-                    Żółtek
+                    <?php echo $row['Nazwisko']; ?>
                 </div>
                 <div class="col-1 date data__cell">
-                    666222444
+                    <?php echo $row['Telefon']; ?>
                 </div>
                 <div class="col-2 data__cell">
-                    Telefon
+                    <?php echo $row['Sprzet']; ?>
                 </div>
-                <div class="col-1 bg-green data__button" onclick="showMore('more<?php echo $i; ?>')">
-                    <div id="dmore<?php echo $i; ?>">Więcej</div>
+                <div class="col-1 bg-green data__button" onclick="showMore('more<?php echo $row['ID_zlecenia']; ?>')">
+                    <div id="dmore<?php echo $row['ID_zlecenia']; ?>">Więcej</div>
                 </div>
             </div>
-            <div id="more<?php echo $i; ?>" class="data__more">
+            <div id="more<?php echo $row['ID_zlecenia']; ?>" class="data__more">
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
-                    <div class="mail col-auto data__cell ">
-                        bartlomiej.zoltek1.brzeczyszczykiewicz@protonmail.com
+                    <div class="mail col-3 data__cell ">
+                        <?php echo $row['Mail']; ?>
                     </div>
                     <div class="col data__cell">
-                        Pęknięta szybka
+                        <?php echo $row['Opis']; ?>
                     </div>
-                    <div class="col-1 bg-silver data__button">
+                    <div class="col-1 bg-green data__button">
                         Status
                     </div>
-                    <div class="col-1 bg-gray data__button">
+                    <div class="col-1 bg-silver data__button">
                         Edytuj
                     </div>
                 </div>
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
                     <div class="col data__cell">
-                        Zostawił ładowarkę
+                        <?php echo $row['Uwagi']; ?>
                     </div>
+                    <div class="col-1 bg-gray data__button">
+                        Usuń
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-1 data__cell invisible"></div>
                     <div class="col data__cell">
-                        Zostawił ładowarkę
+                        <?php echo $row['Notatka']; ?>
                     </div>
                     <div class="col-1 bg-black data__button">
                         Drukuj
@@ -125,8 +143,18 @@
             </div>
 
             <?php
-                endfor;
+                
+                endwhile;
+
+                sqlsrv_free_stmt($getCustomers);
+                sqlsrv_close($connection);
+
+                } catch (Exception $e) {
+                    echo "Błąd połączenia z serverem <br>";
+                }
+
             ?>
+
         </div>
     </div>
     
