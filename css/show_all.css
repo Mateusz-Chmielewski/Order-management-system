@@ -64,6 +64,10 @@
     display: none ;
 }
 
+.data__more__button {
+    display: none ;
+}
+
 .date {
     width: 7rem;
 }

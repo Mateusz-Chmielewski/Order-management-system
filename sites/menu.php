@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    require_once 'customers/if_exist_display.php';
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -27,6 +31,12 @@
                     Wyświetl Klientów
                 </div>
             </div>
+        </div>
+
+        <div class="confirmation">
+            <?php
+                ifExistDisplay('confirmation');
+            ?>
         </div>
 
         <div class="label-header">
@@ -126,9 +136,17 @@
                     <div class="col data__cell">
                         <?php echo $row['Uwagi']; ?>
                     </div>
-                    <div class="col-1 bg-gray data__button">
+                    <div id="delete<?php echo $row['ID_zlecenia']; ?>" class="col-1 data__button bg-green data__more__button" onclick="window.location.href='delete_order.php?ID=<?php echo $row['ID_zlecenia']; ?>'">
+                        Potwierdź
+                    </div>
+                    <div class="col-1 bg-gray data__button" id="bdelete<?php echo $row['ID_zlecenia']; ?>" onclick="showConfirmDelete('delete<?php echo $row['ID_zlecenia']; ?>')">
                         Usuń
                     </div>
+                </div>
+
+                <div id="delete<?php echo $row['ID_zlecenia']; ?>" class="row text-center data__more">
+                    <div class="col data__cell invisible"></div>
+                    
                 </div>
 
                 <div class="row text-center">
@@ -161,7 +179,7 @@
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/show_more.js"></script>
-
+    <script src="../js/show_confirm_delete.js"></script>
     
 </body>
 </html>
