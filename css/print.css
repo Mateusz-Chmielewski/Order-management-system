@@ -1,0 +1,55 @@
+.container {
+    max-width: 43.75rem !important;
+    width: 100%;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 13px!important;
+    color: #050708;
+    /* background-color: gray; */
+}
+
+.header {
+    /* margin-top: 1rem; */
+}
+
+.name:first-of-type,
+.name:nth-of-type(2) {
+    font-family: 'Algerian';
+    font-size: 18px;
+}
+
+.table {
+    max-width: 40rem !important;
+}
+
+.footer {
+    font-size: 9px;
+    text-align: justify!important;
+    margin-bottom: 1rem;
+}
+
+.print__cell {
+    padding: 0.5rem;
+    border: 2px solid black;
+    margin: 0.05rem;
+}
+
+.mt {
+    margin-top: 0.1rem;
+}
+
+.mb {
+    margin-bottom: 0.1rem;
+}
+
+.print__border {
+    border: 2px solid black;
+}
+
+.row {
+    padding: 0 0.05rem;
+}
+
+.devide-border {
+    border: 2px solid black;
+    margin-bottom: 0.5rem;
+}

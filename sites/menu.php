@@ -184,7 +184,7 @@
                     <div class="col data__cell">
                         <?php echo $row['Notatka']; ?>
                     </div>
-                    <div class="col-1 bg-black data__button">
+                    <div class="col-1 bg-black data__button" onclick="window.location.href='print_order.php?ID=<?php echo $row['ID_zlecenia']; ?>'">
                         Drukuj
                     </div>
                 </div>
