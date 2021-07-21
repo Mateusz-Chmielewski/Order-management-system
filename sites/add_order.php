@@ -3,6 +3,34 @@
 
     require_once 'customers/if_exist_display.php';
     require_once '../connection/connection.php';
+
+    if (isset($_GET['ID'])) {
+        $customerID = $_GET['ID'];
+        
+        try {
+                                
+            $connection = openConnection();
+            $tsql = "SELECT RTRIM(Imie) as Imie, RTRIM(Nazwisko) as Nazwisko, RTRIM(Telefon) as Telefon, RTRIM(Mail) as Mail FROM klienci WHERE ID_klienta='$customerID'";
+            $getCustomer = sqlsrv_query($connection, $tsql);
+
+            if (!$getCustomer)
+                throw new Exception;
+            
+            $customer = sqlsrv_fetch_array($getCustomer, SQLSRV_FETCH_ASSOC);
+
+            $_SESSION['remember_orderFirstName'] = $customer['Imie'];
+            $_SESSION['remember_orderLastName'] = $customer['Nazwisko'];
+            $_SESSION['remember_orderPhone'] = $customer['Telefon'];
+            $_SESSION['remember_orderMail'] = $customer['Mail'];
+
+            sqlsrv_free_stmt($getCustomer);
+            sqlsrv_close($connection);
+        
+        } catch (Exception $e) {
+            echo "Błąd pobrania danych <br>";
+        }
+
+    }
 ?>
 
 <!DOCTYPE html>

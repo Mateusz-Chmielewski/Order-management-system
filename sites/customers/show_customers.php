@@ -95,7 +95,7 @@
                 <div class="col-1 bg-gray data__button" id="bdelete<?php echo $row['ID_klienta']; ?>" onclick="showConfirmDelete('delete<?php echo $row['ID_klienta']; ?>')">
                     Usuń
                 </div>
-                <div class="col-1 bg-black data__button">
+                <div class="col-1 bg-black data__button" onclick="window.location.href='../add_order.php?ID=<?php echo $row['ID_klienta']; ?>'">
                     Nowe
                 </div>
             </div>
