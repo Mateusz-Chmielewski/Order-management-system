@@ -103,11 +103,22 @@
             </div>
 
             <div class="row form-group">
+                <div class="col-3 form__cell invisible"></div>
+                <div class="form-check col">
+                    <input class="form-check-input" type="checkbox" id="editCustomer" onclick="check()">
+                    <label class="form-check-label" for="editCustomer">
+                        Edytuj klienta. Jeżeli zdecydujesz się na edytowanie pól klienta nie zostanie edytowany klient. <br> 
+                        Zlecenie zostanie automatycznie przypisane do innego lub nowego klienta
+                    </label>
+                </div>
+            </div>
+
+            <div class="row form-group">
                 <div class="col-3 form__cell__header form__cell bg-green">
                     <label for="orderFirstName" class="form__input">Imie</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderFirstName" maxlength="20" name="orderFirstName" placeholder="Imie" value="<?php echo $row['Imie']; ?>">
+                    <input type="text" class="form-control" id="orderFirstName" maxlength="20" name="orderFirstName" placeholder="Imie" value="<?php echo $row['Imie']; ?>" readonly>
                     <small class="error">
                         <?php
                             ifExistDisplay('error_orderFirstName');
@@ -121,7 +132,7 @@
                     <label for="orderLastName" class="form__input">Nazwisko</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderLastName" maxlength="30" name="orderLastName" placeholder="Nazwisko" value="<?php echo $row['Nazwisko']; ?>">
+                    <input type="text" class="form-control" id="orderLastName" maxlength="30" name="orderLastName" placeholder="Nazwisko" value="<?php echo $row['Nazwisko']; ?>" readonly>
                     <small class="error">
                         <?php
                             ifExistDisplay('error_orderLastName');
@@ -135,7 +146,7 @@
                     <label for="orderPhone" class="form__input">Telefon</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderPhone" maxlength="15" name="orderPhone" placeholder="111222333" value="<?php echo $row['Telefon']; ?>">
+                    <input type="text" class="form-control" id="orderPhone" maxlength="15" name="orderPhone" placeholder="111222333" value="<?php echo $row['Telefon']; ?>" readonly>
                 </div>
             </div>
 
@@ -144,7 +155,7 @@
                     <label for="orderMail" class="form__input">Email</label>
                 </div>
                 <div class="col form__cell">
-                    <input type="text" class="form-control" id="orderMail" name="orderMail" placeholder="nazwa@domena.pl" value="<?php echo $row['Mail']; ?>">
+                    <input type="text" class="form-control" id="orderMail" name="orderMail" placeholder="nazwa@domena.pl" value="<?php echo $row['Mail']; ?>" readonly>
                 </div>
             </div>
 
@@ -211,6 +222,7 @@
     ?>
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/edit_checkbox.js"></script>
 
 </body>
 </html>
