@@ -41,7 +41,7 @@
 </head>
 <body>
     <div class="container text-center">
-
+    <div id="dshowUs">
         <div class="row header">
             <div class="col">
                 <?php
@@ -124,9 +124,11 @@
             <div class="col"></div>
             <div class="col-3 mb-5">Podpis</div>
         </div>
+    </div>
 
         <div class="devide-border"></div>
 
+    <div id="dshowCustomer">
         <div class="row header">
             <div class="col">
                 <?php
@@ -178,27 +180,32 @@
             <div class="col-3 mb-5">Pieczątka</div>
         </div>
 
-        <div class="row panel">
+        
+    </div>
+
+        <div id="showPanel" class="row panel">
             <div class="col"></div>
                 <div class="form-check col mt-3">
-                    <input class="form-check-input" type="checkbox" id="showUs" onclick="check()" checked>
+                    <input class="form-check-input" type="checkbox" id="showUs" onclick="check('showUs')" checked>
                     <label class="form-check-label" for="showUs">
                         Dla nas
                     </label>
                 </div>
                 <div class="form-check col mt-3">
-                    <input class="form-check-input" type="checkbox" id="showCustomer" onclick="check()" checked>
+                    <input class="form-check-input" type="checkbox" id="showCustomer" onclick="check('showCustomer')" checked>
                     <label class="form-check-label" for="showCustomer">
                         Dla klienta
                     </label>
                 </div>
-            <button class="col-2 bg-green data__button btn m-2">Drukuj</button>
-            <button class="col-2 bg-green data__button btn m-2" onclick="window.location.href='menu.php'">Anuluj</button>
+            <button class="col-2 bg-green data__button btn m-2" onclick="printOrder()">Drukuj</button>
+            <button class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='menu.php'">Anuluj</button>
         </div>
 
     </div>
 
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/print_order.js"></script>
+    <script src="../js/select_to_print.js"></script>
 
 </body>
 </html>

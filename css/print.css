@@ -7,10 +7,6 @@
     /* background-color: gray; */
 }
 
-.header {
-    /* margin-top: 1rem; */
-}
-
 .name:first-of-type,
 .name:nth-of-type(2) {
     font-family: 'Algerian';
