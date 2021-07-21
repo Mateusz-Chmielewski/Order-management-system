@@ -26,7 +26,7 @@
                     Nowy Klient
                 </div>  
                 <div class="col dashboard__button bg-gray">
-                    Sortus według
+                    Sortuj według
                 </div>
                 <div class="col dashboard__button bg-black" onclick="window.location.href='../menu.php'">
                     Wyświetl Zlecenia

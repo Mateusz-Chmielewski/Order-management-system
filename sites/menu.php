@@ -25,7 +25,7 @@
                     Status
                 </div>
                 <div class="col dashboard__button bg-gray">
-                    Sortus według
+                    Sortuj według
                 </div>
                 <div class="col dashboard__button bg-black" onclick="window.location.href='customers/show_customers.php'">
                     Wyświetl Klientów
@@ -131,7 +131,7 @@
                     </div>
                 </div>
 
-                <form action="">
+                <form action="update_state.php?ID=<?php echo $row['ID_zlecenia']; ?>" method="post">
                     <div id="state<?php echo $row['ID_zlecenia']; ?>" class="row text-center data__more">
                         <div class="col data__cell invisible"></div>
                         <div class="col-3 data__state">

@@ -154,6 +154,7 @@
     } catch (Exception $e) {
         $_SESSION['confirmation'] = '<span class="error">Błąd dodania zlecenia</span>';
         header('Location: menu.php');
+        exit();
     }
 
 

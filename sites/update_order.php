@@ -138,8 +138,9 @@
 
         sqlsrv_close($connection);
     } catch (Exception $e) {
-        $_SESSION['confirmation'] = '<span class="error">Błąd Edytowania zlecenia</span>';
+        $_SESSION['confirmation'] = '<span class="error">Błąd edytowania zlecenia</span>';
         header('Location: menu.php');
+        exit();
     }
 
     $_SESSION['confirmation'] = "Edytowano zlecenie";
