@@ -123,13 +123,43 @@
                     <div class="col data__cell">
                         <?php echo $row['Opis']; ?>
                     </div>
-                    <div class="col-1 bg-green data__button">
+                    <div class="col-1 bg-green data__button" id="bstate<?php echo $row['ID_zlecenia']; ?>" onclick="showStateForm('state<?php echo $row['ID_zlecenia']; ?>')">
                         Status
                     </div>
                     <div class="col-1 bg-silver data__button" onclick="window.location.href='edit_order.php?ID=<?php echo $row['ID_zlecenia']; ?>'">
                         Edytuj
                     </div>
                 </div>
+
+                <form action="">
+                    <div id="state<?php echo $row['ID_zlecenia']; ?>" class="row text-center data__more">
+                        <div class="col data__cell invisible"></div>
+                        <div class="col-3 data__state">
+                            <select class="form-control" id="orderState" name="orderState">
+
+                                <?php
+                                    $tsql = "SELECT ID_status FROM statusy ORDER BY wartosc";
+                                    $getState = sqlsrv_query($connection, $tsql);
+
+                                    if (!$getState)
+                                        throw new Exception;
+
+                                    while ($state = sqlsrv_fetch_array($getState, SQLSRV_FETCH_ASSOC)) :
+                                ?>
+
+                                <option <?php if($row['Status'] == $state['ID_status']) echo 'selected'; ?>><?php echo $state['ID_status']; ?></option>
+
+                                <?php
+                                    endwhile;
+
+                                    sqlsrv_free_stmt($getState);
+                                ?>
+
+                            </select>
+                        </div>
+                        <input type="submit" value="Zapisz" class="col-1 bg-green data__button btn">
+                    </div>
+                </form>
 
                 <div class="row text-center">
                     <div class="col-1 data__cell invisible"></div>
@@ -180,6 +210,7 @@
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/show_more.js"></script>
     <script src="../js/show_confirm_delete.js"></script>
+    <script src="../js/show_state_form.js"></script>
     
 </body>
 </html>

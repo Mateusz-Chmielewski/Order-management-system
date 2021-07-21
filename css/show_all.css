@@ -68,6 +68,13 @@
     display: none ;
 }
 
+.data__state {
+    background-color: #e8e8e9;
+    margin: 0.2rem;
+    padding: 0.5rem 0.75rem;
+    overflow-wrap: anywhere;
+}
+
 .date {
     width: 7rem;
 }

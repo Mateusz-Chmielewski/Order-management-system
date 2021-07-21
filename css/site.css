@@ -38,3 +38,7 @@ body {
 a {
     text-decoration: none;
 }
+
+.form-control {
+    appearance: menulist;
+}
