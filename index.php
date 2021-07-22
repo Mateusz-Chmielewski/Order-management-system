@@ -8,8 +8,13 @@
 </head>
 <body>
     <?php
-        header("Location: sites/menu.php");
-        exit;
+        if (file_exists('connection/connection_data.txt')) {
+            header("Location: sites/menu.php");
+            exit;
+        } else {
+            header("Location: settings/connection_settings.php");
+            exit;
+        }
     ?>
 </body>
 </html>
