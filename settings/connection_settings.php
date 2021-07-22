@@ -21,7 +21,8 @@
 
             <?php
                 require '../connection/connection_data.php';
-
+                require_once '../sites/customers/if_exist_display.php';
+                session_start();
             ?>
 
             <div class="row form-group">
@@ -62,7 +63,7 @@
 
             <div class="row form-group">
                 <div class="col invisible"></div>
-                <input type="submit" value="Dodaj" class="col-2 bg-green data__button btn m-2">
+                <input type="submit" value="Połącz" class="col-2 bg-green data__button btn m-2">
                 <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='../index.php'">
             </div>
 
@@ -92,12 +93,17 @@
                 </div>
                 <div class="col form__cell">
                     <input type="text" class="form-control" id="name" name="name" placeholder="Zostanie utworzona nowa baza danych o tej nazwie" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_databaseName');
+                        ?>
+                    </small>
                 </div>
             </div>
 
             <div class="row form-group">
                 <div class="col-3 form__cell__header form__cell bg-gray">
-                    <label for="user" class="form__input"></label>
+                    <label for="user" class="form__input">Użytkownik</label>
                 </div>
                 <div class="col form__cell">
                     <input type="text" class="form-control" id="user" name="user" placeholder="Wpisz nazwę użytkownika" value="<?php echo $db_user; ?>">
