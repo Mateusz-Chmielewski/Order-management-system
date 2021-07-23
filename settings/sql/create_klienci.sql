@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[klienci](
+	[ID_klienta] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL,
+	[Imie] [nchar](20) NOT NULL,
+	[Nazwisko] [nchar](30) NOT NULL,
+	[Telefon] [nchar](15) NULL,
+	[Mail] [nchar](50) NULL,
+ CONSTRAINT [PK_Klienci] PRIMARY KEY CLUSTERED 
+(
+	[ID_klienta] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]

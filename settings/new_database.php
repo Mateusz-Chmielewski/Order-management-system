@@ -72,6 +72,36 @@
             sqlsrv_free_stmt($insertStateTable);
         }
 
+
+        $tsql = file_get_contents("sql/create_klienci.sql");
+        $createCustomersTable = sqlsrv_query($connection, $tsql);
+
+        if (!$createCustomersTable)
+            die(print_r(sqlsrv_errors()));
+
+        sqlsrv_free_stmt($createCustomersTable);
+
+
+        $tsql = file_get_contents("sql/create_zlecenia.sql");
+        $createOrdersTable = sqlsrv_query($connection, $tsql);
+
+        if (!$createOrdersTable)
+            die(print_r(sqlsrv_errors()));
+
+        sqlsrv_free_stmt($createOrdersTable);
+
+
+        for ($i = 0; $i <=4; $i++) {
+            $tsql = file_get_contents("sql/add_constraint".$i.".sql");
+            $createConstraints = sqlsrv_query($connection, $tsql);
+
+            if (!$createConstraints)
+                die(print_r(sqlsrv_errors()));
+
+            sqlsrv_free_stmt($createConstraints);
+        }
+
+
         sqlsrv_close($connection);
 
         $writeSettings = fopen("../connection/connection_data.txt", "w");
@@ -90,7 +120,7 @@
     }
 
     $_SESSION['confirmation'] = "Utworzono nową bazę danych";
-    // header('Location: ../index.php');
+    header('Location: ../index.php');
 
     function createNewDatabase($newName, $connection) {
 

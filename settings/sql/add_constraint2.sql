@@ -1,0 +1,1 @@
+ALTER TABLE [dbo].[zlecenia] CHECK CONSTRAINT [FK_zlecenia_klienci]
