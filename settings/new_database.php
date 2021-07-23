@@ -28,11 +28,56 @@
 
     $errorDatabaseName = 'Błąd utworzenia nowej bazy danych';
     try {
-        if (!createNewDatabase($name)) {
-            $errorDatabaseName = 'Baza danych o tej nazwie już istnieje';
+        require '../connection/connection.php';
+        $connection = openConnection();
+
+        if (!createNewDatabase($name, $connection)) {
+            $errorDatabaseName = 'Baza danych o tej  nazwie już isnieje';
             throw new Exception;
         }
 
+
+        $tsql = "CREATE DATABASE $name";
+        $newDatabase = sqlsrv_query($connection, $tsql);
+
+        if (!$newDatabase)
+            die(print_r(sqlsrv_errors()));
+
+        sqlsrv_free_stmt($newDatabase);
+
+
+        $tsql = "USE $name";
+        $useNew = sqlsrv_query($connection, $tsql);
+        sqlsrv_free_stmt($useNew);
+
+
+        $tsql = file_get_contents("sql/create_statusy.sql");
+        $createStateTable = sqlsrv_query($connection, $tsql);
+
+        if (!$createStateTable)
+            die(print_r(sqlsrv_errors()));
+
+        sqlsrv_free_stmt($createStateTable);
+
+
+        $states = array("Nowe", "Sprawdzanie", "W trakcie", "Do decyzji", "Zakończone", "Niepowodzenie", "Odmowa");
+
+        for ($i = 0; $i < sizeof($states); $i++) {
+            $tsql = "INSERT INTO statusy ([ID_status]) VALUES ('$states[$i]')";
+            $insertStateTable = sqlsrv_query($connection, $tsql);
+
+            if (!$insertStateTable)
+                die(print_r(sqlsrv_errors()));
+
+            sqlsrv_free_stmt($insertStateTable);
+        }
+
+        sqlsrv_close($connection);
+
+        $writeSettings = fopen("../connection/connection_data.txt", "w");
+        $writeText = $host.';'.$name.';'.$user.';'.$password;
+        fwrite($writeSettings, $writeText);
+        fclose($writeSettings);
 
     } catch (Exception $e) {
         $writeSettings = fopen("../connection/connection_data.txt", "w");
@@ -44,18 +89,11 @@
         exit();
     }
 
-    $writeSettings = fopen("../connection/connection_data.txt", "w");
-    $writeText = $host.';'.$name.';'.$user.';'.$password;
-    fwrite($writeSettings, $writeText);
-    fclose($writeSettings);
-
     $_SESSION['confirmation'] = "Utworzono nową bazę danych";
     // header('Location: ../index.php');
 
-    function createNewDatabase($newName) {
-        require '../connection/connection.php';
+    function createNewDatabase($newName, $connection) {
 
-        $connection = openConnection();
         $tsql = "SELECT name FROM master.dbo.sysdatabases";
         $getDatabases = sqlsrv_query($connection, $tsql);
 
@@ -63,11 +101,12 @@
             if ($row['name'] == $newName) {
                 sqlsrv_free_stmt($getDatabases);
                 sqlsrv_close($connection);
+                $errorDatabaseName = 'Baza danych o tej nazwie już istnieje';
                 return false;
             }
 
         sqlsrv_free_stmt($getDatabases);
-        sqlsrv_close($connection);
+
         return true;
     }
     
