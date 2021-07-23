@@ -39,3 +39,7 @@ body {
     font-weight: 600;
     line-height: 1.5;
 }
+
+.form__print-txt {
+    min-height: 10rem!important;
+}
