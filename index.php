@@ -8,10 +8,6 @@
 </head>
 <body>
     <?php
-        session_start();
-        if (!isset($_SESSION['INDEX_PATH']))
-            $_SESSION['INDEX_PATH'] = $_SERVER['PHP_SELF'];
-
         if (file_exists('connection/connection_data.txt')) {
             header("Location: login/login_form.php");
             exit;
