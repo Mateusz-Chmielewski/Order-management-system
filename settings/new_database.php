@@ -41,7 +41,7 @@
         $newDatabase = sqlsrv_query($connection, $tsql);
 
         if (!$newDatabase)
-            die(print_r(sqlsrv_errors()));
+            throw new Exception;
 
         sqlsrv_free_stmt($newDatabase);
 
@@ -55,7 +55,7 @@
         $createStateTable = sqlsrv_query($connection, $tsql);
 
         if (!$createStateTable)
-            die(print_r(sqlsrv_errors()));
+            throw new Exception;
 
         sqlsrv_free_stmt($createStateTable);
 
@@ -67,7 +67,7 @@
             $insertStateTable = sqlsrv_query($connection, $tsql);
 
             if (!$insertStateTable)
-                die(print_r(sqlsrv_errors()));
+                throw new Exception;
 
             sqlsrv_free_stmt($insertStateTable);
         }
@@ -77,7 +77,7 @@
         $createCustomersTable = sqlsrv_query($connection, $tsql);
 
         if (!$createCustomersTable)
-            die(print_r(sqlsrv_errors()));
+            throw new Exception;
 
         sqlsrv_free_stmt($createCustomersTable);
 
@@ -86,7 +86,7 @@
         $createOrdersTable = sqlsrv_query($connection, $tsql);
 
         if (!$createOrdersTable)
-            die(print_r(sqlsrv_errors()));
+            throw new Exception;
 
         sqlsrv_free_stmt($createOrdersTable);
 
@@ -96,7 +96,7 @@
             $createConstraints = sqlsrv_query($connection, $tsql);
 
             if (!$createConstraints)
-                die(print_r(sqlsrv_errors()));
+                throw new Exception;
 
             sqlsrv_free_stmt($createConstraints);
         }

@@ -9,7 +9,7 @@
 <body>
     <?php
         if (file_exists('connection/connection_data.txt')) {
-            header("Location: sites/menu.php");
+            header("Location: login/login_form.php");
             exit;
         } else {
             header("Location: settings/connection_settings.php");

@@ -6,7 +6,7 @@
         $connection = sqlsrv_connect($db_host, $connectionOptions);
 
         if (!$connection)
-            echo '<span class="error">Błąd połączenia z serwerem</span>';
+            echo '<span class="error">Błąd połączenia z serwerem <br> </span>';
         
         return $connection;
     }
