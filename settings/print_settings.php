@@ -1,3 +1,6 @@
+<?php
+    require_once '../login/check_is_logged.php';
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>

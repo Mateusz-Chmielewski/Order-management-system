@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once '../../login/check_is_logged.php';
+
     $customerFirstName = $_POST['customerFirstName'];
     $customerLastName = $_POST['customerLastName'];
     $customerPhone = $_POST['customerPhone'];

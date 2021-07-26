@@ -2,6 +2,7 @@
     session_start();
 
     require_once 'customers/if_exist_display.php';
+    require_once '../login/check_is_logged.php';
     require_once '../connection/connection.php';
 
     $orderID = $_GET['ID'];

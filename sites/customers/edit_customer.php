@@ -1,6 +1,7 @@
 <?php
     session_start();
 
+    require_once '../../login/check_is_logged.php';
     require_once 'if_exist_display.php';
 ?>
 

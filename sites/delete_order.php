@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require_once '../login/check_is_logged.php';
+
     try {
         require_once '../connection/connection.php';
         $connection = openConnection();

@@ -1,6 +1,7 @@
 <?php
 
     session_start();
+    require_once '../login/check_is_logged.php';
 
     $address = $_POST['address'];
     $footer = $_POST['footer'];
