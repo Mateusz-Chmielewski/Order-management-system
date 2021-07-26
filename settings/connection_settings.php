@@ -120,6 +120,43 @@
             </div>
 
             <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-green">
+                    <label for="login" class="form__input">Login</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="text" class="form-control" id="login" maxlength="20" name="login" placeholder="Wpisz login. Będzie stosowany do logowania się do aplikacji" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_login');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-silver">
+                    <label for="lpassword1" class="form__input">Hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="lpassword1" maxlength="20" name="lpassword1" placeholder="Wpisz hasło. Będzie stosowane do logowania się do aplikacji" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_lpassword');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-gray">
+                    <label for="lpassword2" class="form__input">Powtórz hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="lpassword2" maxlength="20" name="lpassword2" placeholder="Ponownie wpisz hasło" value="">
+                </div>
+            </div>
+
+            <div class="row form-group">
                 <div class="col invisible"></div>
                 <input type="submit" value="Nowa" class="col-2 bg-green data__button btn m-2">
                 <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='../index.php'">

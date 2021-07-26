@@ -5,14 +5,49 @@
     $name = $_POST['name'];
     $user = $_POST['user'];
     $password = $_POST['password'];
+    $login = $_POST['login'];
+    $lpassword1 = $_POST['lpassword1'];
+    $lpassword2 = $_POST['lpassword2'];
 
-    if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/oms/connection/connection_data.txt")) {
+    if (empty($login) || empty($lpassword1) || empty($lpassword2) || !ctype_alnum($login) || !ctype_alnum($lpassword1) || !ctype_alnum($lpassword2)) {
+        $error = 'Pole może zawierać tylko litery i cyfry';
+
+        if (!ctype_alnum($login))
+            $_SESSION['error_login'] = $error;
+
+        if (!ctype_alnum($lpassword1) || !ctype_alnum($lpassword2))
+            $_SESSION['error_lpassword'] = $error;
+
+        $error = 'Pole nie może być puste';
+
+        if (empty($login))
+            $_SESSION['error_login'] = $error;
+    
+        if (empty($lpassword1) || empty($lpassword2))
+            $_SESSION['error_lpassword'] = $error;
+
+        header('Location: connection_settings.php');
+        exit();
+    }
+
+    if ($lpassword1 != $lpassword2) {
+        $_SESSION['error_lpassword'] = "Podane hasła nie są takie same";
+
+        header('Location: connection_settings.php');
+        exit();
+    }
+
+
+    $lpassword = password_hash($lpassword1, PASSWORD_DEFAULT);
+
+
+    if (!file_exists(dirname(__DIR__)."\connection\connection_data.txt")) {
         $remember_host = "";
         $remember_name = "";
         $remember_user = "";
         $remember_password = "";
     } else {
-        $readSettings = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/oms/connection/connection_data.txt");
+        $readSettings = file_get_contents(dirname(__DIR__)."\connection\connection_data.txt");
         $split = explode(";", $readSettings);
 
         $remember_host = $split[0];
@@ -102,6 +137,24 @@
         }
 
 
+        $tsql = file_get_contents("sql/create_uzytkownicy.sql");
+        $createUsersTable = sqlsrv_query($connection, $tsql);
+
+        if (!$createUsersTable)
+            throw new Exception;
+
+        sqlsrv_free_stmt($createUsersTable);
+
+
+        $tsql = "INSERT INTO [uzytkownicy] ([Uzytkownik], [Haslo]) VALUES ('$login', '$lpassword')";
+        $insertUser = sqlsrv_query($connection, $tsql);
+
+        if (!$insertUser)
+            print_r(sqlsrv_errors());
+
+        sqlsrv_free_stmt($insertUser);
+
+
         sqlsrv_close($connection);
 
         $writeSettings = fopen("../connection/connection_data.txt", "w");
@@ -119,6 +172,7 @@
         exit();
     }
 
+    session_unset();
     $_SESSION['confirmation'] = "Utworzono nową bazę danych";
     header('Location: ../index.php');
 
