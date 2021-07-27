@@ -59,6 +59,7 @@
                         <?php echo $row['Data']; ?>
                     </div>
                 </div>
+                <div class="text-center mt-3">Nr zlecenia: <?php echo $orderID; ?></div>
             </div>
         </div>
 
@@ -146,6 +147,7 @@
                         <?php echo $row['Data']; ?>
                     </div>
                 </div>
+                <div class="text-center mt-3">Nr zlecenia: <?php echo $orderID; ?></div>
             </div>
         </div>
 

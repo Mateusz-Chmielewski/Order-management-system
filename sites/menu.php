@@ -3,6 +3,8 @@
 
     require_once '../login/check_is_logged.php';
     require_once 'customers/if_exist_display.php';
+    require_once 'search.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -17,13 +19,18 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col"></div>
-            <button class="col-2 bg-green data__button btn mx-2" onclick="window.location.href='../settings/user_settings.php'">Konto</button>
-            <button class="col-2 bg-silver data__button btn mx-2" onclick="window.location.href='../settings/print_settings.php'">Dane do wydruku</button>
-            <button class="col-2 bg-gray data__button btn mx-2" onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</button>
-            <button class="col-2 bg-black data__button btn mx-2" onclick="window.location.href='../login/log_out.php'">Wyloguj</button>
-        </div>
+        <form action="" method="post">
+            <div class="row form-group">
+                <div class="col btn">
+                    <input type="text" class="form-control" id="search" name="search" value="<?php echo $showSearch; ?>">    
+                </div>
+                <input type="submit" value="Szukaj" class="col-1 bg-green data__button btn">
+                <button class="col-2 bg-green data__button btn " onclick="window.location.href='../settings/user_settings.php'">Konto</button>
+                <button class="col-2 bg-silver data__button btn " onclick="window.location.href='../settings/print_settings.php'">Dane do wydruku</button>
+                <button class="col-2 bg-gray data__button btn " onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</button>
+                <button class="col-2 bg-black data__button btn " onclick="window.location.href='../login/log_out.php'">Wyloguj</button>
+            </div>
+        </form>
 
         <div class="dashboard">
             <div class="row text-center">
@@ -84,7 +91,7 @@
                 try {
                     
                     $connection = openConnection();
-                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta ORDER BY ID_zlecenia DESC";
+                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta WHERE $sqlSearch ORDER BY ID_zlecenia DESC";
                     $getOrders = sqlsrv_query($connection, $tsql);
 
                     if (!$getOrders)
