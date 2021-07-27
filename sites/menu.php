@@ -25,10 +25,10 @@
                     <input type="text" class="form-control" id="search" name="search" value="<?php echo $showSearch; ?>">    
                 </div>
                 <input type="submit" value="Szukaj" class="col-1 bg-green data__button btn">
-                <button class="col-2 bg-green data__button btn " onclick="window.location.href='../settings/user_settings.php'">Konto</button>
-                <button class="col-2 bg-silver data__button btn " onclick="window.location.href='../settings/print_settings.php'">Dane do wydruku</button>
-                <button class="col-2 bg-gray data__button btn " onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</button>
-                <button class="col-2 bg-black data__button btn " onclick="window.location.href='../login/log_out.php'">Wyloguj</button>
+                <div class="col-2 bg-green data__button btn " onclick="window.location.href='../settings/user_settings.php'">Konto</div>
+                <div class="col-2 bg-silver data__button btn " onclick="window.location.href='../settings/print_settings.php'">Dane do wydruku</div>
+                <div class="col-2 bg-gray data__button btn " onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</div>
+                <div class="col-2 bg-black data__button btn " onclick="window.location.href='../login/log_out.php'">Wyloguj</div>
             </div>
         </form>
 
