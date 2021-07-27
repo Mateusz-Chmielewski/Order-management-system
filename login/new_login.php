@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once 'check_is_logged.php';
 
     $oldLogin = $_POST['oldLogin'];
     $newLogin = $_POST['newLogin'];
@@ -75,7 +76,7 @@
             throw new Exception;
 
         sqlsrv_free_stmt($setLogin);
-
+        session_unset();
         sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['error_newLogin'] = $errorNewLogin;
@@ -83,7 +84,8 @@
         exit();
     }
 
-    $_SESSION['confirmation'] = "Login został zmieniony";
+    session_start();
+    $_SESSION['error_log_in'] = '<span class="confirmation">Login został zmieniony</span>';
     header('Location: ../index.php');
 
 ?>

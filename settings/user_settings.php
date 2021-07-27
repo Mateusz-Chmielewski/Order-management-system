@@ -31,7 +31,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta newLogin="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ustawienia użytkownika</title>
     <link href="../bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/site.css">
@@ -95,7 +95,70 @@
                         ifExistDisplay('error_newLogin');
                     ?>
                 </div>
-                <input type="submit" value="Połącz" class="col-2 bg-green data__button btn m-2">
+                <input type="submit" value="Zmień" class="col-2 bg-green data__button btn m-2">
+                <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='../index.php'">
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="container">
+        <div class="form__header">
+            Zmiana <span class="color-green">Hasła</span> 
+        </div>
+
+        <form action="../login/new_password.php" method="post">
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-green">
+                    <label for="login" class="form__input">Login</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Wpisz login" value="<?php echo $user['Uzytkownik']; ?>">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_newPassword_login');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-silver">
+                    <label for="oldPassword" class="form__input">Stare hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Wpisz stare hasło" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_newPassword_oldPassword');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-gray">
+                    <label for="newPassword" class="form__input">Nowe hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Wpisz nowe hasło" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_newPassword_newPassword');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col error">
+                    <?php
+                        ifExistDisplay('error_newPassword');
+                    ?>
+                </div>
+                <input type="submit" value="Zmień" class="col-2 bg-green data__button btn m-2">
                 <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='../index.php'">
             </div>
 
