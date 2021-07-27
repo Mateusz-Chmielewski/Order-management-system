@@ -45,6 +45,9 @@
 
         $_SESSION['logged'] = $row['ID_uzytkownika'];
 
+        sqlsrv_free_stmt($getUser);
+
+        sqlsrv_close($connection);
     } catch (Exception $e) {
         $_SESSION['error_log_in'] = $errorLogIn;
         header('Location: login_form.php');

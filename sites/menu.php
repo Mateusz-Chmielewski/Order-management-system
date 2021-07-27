@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row">
             <div class="col"></div>
-            <button class="col-2 bg-green data__button btn mx-2">Konto</button>
+            <button class="col-2 bg-green data__button btn mx-2" onclick="window.location.href='../settings/user_settings.php'">Konto</button>
             <button class="col-2 bg-silver data__button btn mx-2" onclick="window.location.href='../settings/print_settings.php'">Dane do wydruku</button>
             <button class="col-2 bg-gray data__button btn mx-2" onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</button>
             <button class="col-2 bg-black data__button btn mx-2" onclick="window.location.href='../login/log_out.php'">Wyloguj</button>
