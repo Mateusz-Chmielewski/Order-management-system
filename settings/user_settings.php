@@ -166,6 +166,64 @@
 
     </div>
 
+    <div class="container">
+        <div class="form__header">
+            Nowy <span class="color-green">Użytkownik</span> 
+        </div>
+
+        <form action="../login/new_user.php" method="post">
+
+        <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-green">
+                    <label for="login" class="form__input">Login</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="text" class="form-control" id="login" maxlength="20" name="login" placeholder="Wpisz login" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_newUser_login');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-silver">
+                    <label for="password1" class="form__input">Hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Wpisz hasło" value="">
+                    <small class="error">
+                        <?php
+                            ifExistDisplay('error_newUser_password1');
+                        ?>
+                    </small>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-3 form__cell__header form__cell bg-gray">
+                    <label for="password2" class="form__input">Powtórz hasło</label>
+                </div>
+                <div class="col form__cell">
+                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Wpisz ponownie hasło" value="">
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col error">
+                    <?php
+                        ifExistDisplay('error_newUser');
+                    ?>
+                </div>
+                <input type="submit" value="Nowy" class="col-2 bg-green data__button btn m-2">
+                <input type="button" value="Anuluj" class="col-2 bg-silver data__button btn m-2" onclick="window.location.href='../index.php'">
+            </div>
+
+        </form>
+
+    </div>
+
     <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     
 </body>
