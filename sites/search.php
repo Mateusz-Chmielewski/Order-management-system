@@ -9,6 +9,7 @@
                     OR RTRIM(Imie) + ' ' + RTRIM(Nazwisko) LIKE '%$showSearch%'
                     OR RTRIM(Nazwisko) + ' ' + RTRIM(Imie) LIKE '%$showSearch%'
                     OR sprzet LIKE '%$showSearch%'
+                    OR Telefon LIKE '%$showSearch%' 
                     ";
     }
 

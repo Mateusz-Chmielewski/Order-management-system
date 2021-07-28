@@ -4,6 +4,8 @@
     require_once '../login/check_is_logged.php';
     require_once 'customers/if_exist_display.php';
     require_once 'search.php';
+    require_once 'state.php';
+    require_once '../connection/connection.php';
 
 ?>
 <!DOCTYPE html>
@@ -30,24 +32,67 @@
                 <div class="col-2 bg-gray data__button btn " onclick="window.location.href='../settings/connection_settings.php'">Ustawienia</div>
                 <div class="col-2 bg-black data__button btn " onclick="window.location.href='../login/log_out.php'">Wyloguj</div>
             </div>
-        </form>
 
-        <div class="dashboard">
-            <div class="row text-center">
-                <div class="col dashboard__button bg-green " onclick="window.location.href='add_order.php'">
-                    Nowe zlecenie
-                </div>
-                <div class="col dashboard__button bg-silver">
-                    Status
-                </div>
-                <div class="col dashboard__button bg-gray">
-                    Sortuj według
-                </div>
-                <div class="col dashboard__button bg-black" onclick="window.location.href='customers/show_customers.php'">
-                    Wyświetl Klientów
+            <div class="dashboard">
+                <div class="row text-center">
+                    <div class="col dashboard__button bg-green " onclick="window.location.href='add_order.php'">
+                        Nowe zlecenie
+                    </div>
+                    <div class="col dashboard__button bg-silver" onclick="showStateForm('states')" id="bstates">
+                        Status
+                    </div>
+                    <div class="col dashboard__button bg-gray">
+                        Sortuj według
+                    </div>
+                    <div class="col dashboard__button bg-black" onclick="window.location.href='customers/show_customers.php'">
+                        Wyświetl Klientów
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row text-center">
+                <div class="col">   
+                    <div class="row data__more" id="states">
+                        <div class="col"></div>  
+                        <div class="col-6 data__state" >
+                            <select class="form-control" id="state" name="state">
+
+                                <option <?php if($showState == "Niezakończone") echo 'selected'; ?>>Niezakończone</option>
+                                <option <?php if($showState == "Wszystkie") echo 'selected'; ?>>Wszystkie</option>
+
+                                    <?php
+                                        try {
+                                            $connection = openConnection();
+                                            $tsql = "SELECT RTRIM(ID_status) as Status FROM statusy ORDER BY wartosc";
+                                            $getState = sqlsrv_query($connection, $tsql);
+
+                                            if (!$getState)
+                                                throw new Exception;
+
+                                            while ($state = sqlsrv_fetch_array($getState, SQLSRV_FETCH_ASSOC)) :
+                                    ?>
+
+                                    <option <?php if($showState == $state['Status']) echo 'selected'; ?>><?php echo $state['Status']; ?></option>
+
+                                    <?php
+                                            endwhile;
+
+                                            sqlsrv_free_stmt($getState);
+                                            sqlsrv_close($connection);
+                                        } catch (Exception $e) {
+                                            echo "Błąd pobrania danych <br>";
+                                        }
+                                    ?>
+
+                            </select>
+                        </div>
+                        <input type="submit" value="Wybierz" class="col-2 bg-green data__button btn">
+                    </div>
+                </div>
+
+                <div class="col"></div>
+            </div>
+        </form>        
     
         <div class="confirmation">
             <?php
@@ -86,12 +131,12 @@
         <div class="data">
 
             <?php
-                require_once '../connection/connection.php';
+                
 
                 try {
                     
                     $connection = openConnection();
-                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta WHERE $sqlSearch ORDER BY ID_zlecenia DESC";
+                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta WHERE ($sqlSearch) AND ($sqlState) ORDER BY ID_zlecenia DESC";
                     $getOrders = sqlsrv_query($connection, $tsql);
 
                     if (!$getOrders)
