@@ -5,6 +5,7 @@
     require_once 'customers/if_exist_display.php';
     require_once 'search.php';
     require_once 'state.php';
+    require_once 'sort.php';
     require_once '../connection/connection.php';
 
 ?>
@@ -38,10 +39,10 @@
                     <div class="col dashboard__button bg-green " onclick="window.location.href='add_order.php'">
                         Nowe zlecenie
                     </div>
-                    <div class="col dashboard__button bg-silver" onclick="showStateForm('states')" id="bstates">
+                    <div class="col dashboard__button bg-silver" onclick="showStateForm('states', 'Status')" id="bstates">
                         Status
                     </div>
-                    <div class="col dashboard__button bg-gray">
+                    <div class="col dashboard__button bg-gray" onclick="showStateForm('sorts', 'Sortuj według')" id="bsorts">
                         Sortuj według
                     </div>
                     <div class="col dashboard__button bg-black" onclick="window.location.href='customers/show_customers.php'">
@@ -90,7 +91,26 @@
                     </div>
                 </div>
 
-                <div class="col"></div>
+                <div class="col">   
+                    <div class="row data__more" id="sorts">
+                        <div class="col-6 data__state" >
+                            <select class="form-control" id="sort" name="sort">
+
+                                <option <?php if($showSort == "ID malejąco") echo 'selected'; ?>>ID malejąco</option>
+                                <option <?php if($showSort == "ID rosnąco") echo 'selected'; ?>>ID rosnąco</option>
+                                <option <?php if($showSort == "Data malejąco") echo 'selected'; ?>>Data malejąco</option>
+                                <option <?php if($showSort == "Data rosnąco") echo 'selected'; ?>>Data rosnąco</option>
+                                <option <?php if($showSort == "Nazwisko malejąco") echo 'selected'; ?>>Nazwisko malejąco</option>
+                                <option <?php if($showSort == "Nazwisko rosnąco") echo 'selected'; ?>>Nazwisko rosnąco</option>
+                                <option <?php if($showSort == "Imię malejąco") echo 'selected'; ?>>Imię malejąco</option>
+                                <option <?php if($showSort == "Imię rosnąco") echo 'selected'; ?>>Imię rosnąco</option>
+
+                            </select>
+                        </div>
+                        <input type="submit" value="Wybierz" class="col-2 bg-green data__button btn">
+                        <div class="col"></div>  
+                    </div>
+                </div>
             </div>
         </form>        
     
@@ -136,7 +156,7 @@
                 try {
                     
                     $connection = openConnection();
-                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta WHERE ($sqlSearch) AND ($sqlState) ORDER BY ID_zlecenia DESC";
+                    $tsql = "SELECT * FROM zlecenia INNER JOIN klienci ON zlecenia.Klient = klienci.ID_klienta WHERE ($sqlSearch) AND ($sqlState) ORDER BY $sqlSort";
                     $getOrders = sqlsrv_query($connection, $tsql);
 
                     if (!$getOrders)
@@ -184,7 +204,7 @@
                     <div class="col data__cell">
                         <?php echo $row['Opis']; ?>
                     </div>
-                    <div class="col-1 bg-green data__button" id="bstate<?php echo $row['ID_zlecenia']; ?>" onclick="showStateForm('state<?php echo $row['ID_zlecenia']; ?>')">
+                    <div class="col-1 bg-green data__button" id="bstate<?php echo $row['ID_zlecenia']; ?>" onclick="showStateForm('state<?php echo $row['ID_zlecenia']; ?>', 'Status')">
                         Status
                     </div>
                     <div class="col-1 bg-silver data__button" onclick="window.location.href='edit_order.php?ID=<?php echo $row['ID_zlecenia']; ?>'">
