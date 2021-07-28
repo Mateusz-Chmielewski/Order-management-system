@@ -2,7 +2,8 @@
     session_start();
     require_once 'if_exist_display.php';
     require_once '../../login/check_is_logged.php';
-    require_once 'search_customer.php'
+    require_once 'search_customer.php';
+    require_once 'sort_customer.php';
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -30,24 +31,41 @@
                 <div class="col-2 bg-gray data__button btn " onclick="window.location.href='../../settings/connection_settings.php'">Ustawienia</div>
                 <div class="col-2 bg-black data__button btn " onclick="window.location.href='../../login/log_out.php'">Wyloguj</div>
             </div>
-        </form>
 
-        <div class="dashboard">
-            <div class="row text-center">
-                <div class="col dashboard__button bg-green " onclick="window.location.href='../add_order.php'">
-                    Nowe zlecenie
-                </div>
-                <div class="col dashboard__button bg-silver" onclick="window.location.href='add_customer.php'">
-                    Nowy Klient
-                </div>  
-                <div class="col dashboard__button bg-gray">
-                    Sortuj według
-                </div>
-                <div class="col dashboard__button bg-black" onclick="window.location.href='../menu.php'">
-                    Wyświetl Zlecenia
+            <div class="dashboard">
+                <div class="row text-center">
+                    <div class="col dashboard__button bg-green " onclick="window.location.href='../add_order.php'">
+                        Nowe zlecenie
+                    </div>
+                    <div class="col dashboard__button bg-silver" onclick="window.location.href='add_customer.php'">
+                        Nowy Klient
+                    </div>  
+                    <div class="col dashboard__button bg-gray" onclick="showStateForm('sorts_customer', 'Sortuj według')" id="bsorts_customer">
+                        Sortuj według
+                    </div>
+                    <div class="col dashboard__button bg-black" onclick="window.location.href='../menu.php'">
+                        Wyświetl Zlecenia
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="row text-center data__more" id="sorts_customer">
+                <div class="col-6"></div>
+                <div class="col-3 data__state" >
+                    <select class="form-control" id="sort" name="sort">
+
+                        <option <?php if($showSort == "Nazwisko malejąco") echo 'selected'; ?>>Nazwisko malejąco</option>
+                        <option <?php if($showSort == "Nazwisko rosnąco") echo 'selected'; ?>>Nazwisko rosnąco</option>
+                        <option <?php if($showSort == "Imię malejąco") echo 'selected'; ?>>Imię malejąco</option>
+                        <option <?php if($showSort == "Imię rosnąco") echo 'selected'; ?>>Imię rosnąco</option>
+
+                    </select>
+                </div>
+                <input type="submit" value="Wybierz" class="col-1 bg-green data__button btn">
+                <div class="col"></div>
+            </div>
+
+        </form>
 
         <div class="confirmation">
             <?php
@@ -82,7 +100,7 @@
                 try {
                     
                     $connection = openConnection();
-                    $tsql = "SELECT * FROM klienci WHERE $sqlSearch ORDER BY Nazwisko";
+                    $tsql = "SELECT * FROM klienci WHERE $sqlSearch ORDER BY $sqlSort";
                     $getCustomers = sqlsrv_query($connection, $tsql);
 
                     if (!$getCustomers)
@@ -139,6 +157,7 @@
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/set_more-option_width.js"></script>
     <script src="../../js/show_confirm_delete.js"></script>
+    <script src="../../js/show_state_form.js"></script>
     
 </body>
 </html> 
