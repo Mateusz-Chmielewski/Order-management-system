@@ -13,10 +13,11 @@ This is web application which allow you manage your customer orders.
 * MS SQL Server 
 
 ## Setup
-1. Dowload [the Microsoft Drivers for PHP for SQL Server](https://docs.microsoft.com/en-us/sql/connect/php/overview-of-the-php-sql-driver)
-2. Run dowloaded program and as location to place extracted files type path to you ` php/ext ` folder
-3. Open your php.ini file and press ` CTR + F ` and search ` extension=curl `
-4. In this place add extension to ` php_pdo_sqlsrv_ts ` and ` php_sqlsrv_ts ` file for your PHP version and server achitecture
+1. Dowload and install [Microsoft ODBC Driver for SQL Server](https://docs.microsoft.com/en-us/sql/connect/odbc/microsoft-odbc-driver-for-sql-server)
+2. Dowload [Microsoft Drivers for PHP for SQL Server](https://docs.microsoft.com/en-us/sql/connect/php/overview-of-the-php-sql-driver)
+3. Run dowloaded program and as location to place extracted files type path to you ` php/ext ` folder of the PHP server
+4. Open your php.ini file and press ` CTR + F ` and search ` extension=curl `
+5. In this place add extension to ` php_pdo_sqlsrv_ts ` and ` php_sqlsrv_ts ` file for your PHP version and server achitecture
 
 Example for PHP version 8 and architecture x64
 ```
